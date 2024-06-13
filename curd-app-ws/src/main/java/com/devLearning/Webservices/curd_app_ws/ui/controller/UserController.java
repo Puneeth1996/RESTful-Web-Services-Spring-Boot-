@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("users") // http://localhost:8080/api/users
 public class UserController {
 
-	@Autowired
 	UserService userService;
 	
 	@GetMapping

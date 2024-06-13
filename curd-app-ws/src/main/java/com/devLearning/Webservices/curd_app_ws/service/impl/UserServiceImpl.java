@@ -9,16 +9,21 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+
 
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
+
+
     UserRepository userRepository;
 
 
     @Autowired
     Utils utils;
+
+
 
 
     @Override
@@ -27,10 +32,10 @@ public class UserServiceImpl implements UserService {
         UserEntity userEntity = new UserEntity();
         BeanUtils.copyProperties(user, userEntity);
 
-        userEntity.setEncryptedPassword("test");
-        userEntity.setEmailVerificationToken("testEmailVerificationToken");
         String publicUserId = utils.generateUserId(30);
         userEntity.setUserId(publicUserId);
+        userEntity.setEncryptedPassword("testEncryptedPassword");
+        userEntity.setEmailVerificationToken("testEmailVerificationToken");
         UserEntity storedUserDetails = userRepository.save(userEntity);
 
         UserDto returnValue  = new UserDto();
@@ -39,4 +44,19 @@ public class UserServiceImpl implements UserService {
 
         return returnValue;
     }
+
+
+//    @Override
+//    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+//        UserEntity userEntity = userRepository.findByEmail(email);
+//
+//        if (userEntity == null)
+//            throw new UsernameNotFoundException(email);
+//
+//
+//        return new User(userEntity.getEmail(), userEntity.getEncryptedPassword(), new ArrayList<>());
+//    }
+
+
+
 }

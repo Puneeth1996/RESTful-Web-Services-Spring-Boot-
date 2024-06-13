@@ -9,8 +9,19 @@ import java.util.List;
 @Entity
 @Table(name="users")
 public class UserEntity implements Serializable {
+    public UserEntity() {
+    }
 
     private static final long serialVersionUID = 5313493413859894403L;
+
+    public UserEntity(String userId, String firstName, String lastName, String email, String encryptedPassword, String emailVerificationToken) {
+        this.userId = userId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.encryptedPassword = encryptedPassword;
+        this.emailVerificationToken = emailVerificationToken;
+    }
 
     @Id
     @GeneratedValue
@@ -36,8 +47,6 @@ public class UserEntity implements Serializable {
     @Column(nullable=false)
     private Boolean emailVerificationStatus = false;
 
-    @OneToMany(mappedBy="userDetails", cascade=CascadeType.ALL)
-    private List<AddressEntity> addresses;
 
     public long getId() {
         return id;
@@ -103,13 +112,6 @@ public class UserEntity implements Serializable {
         this.emailVerificationStatus = emailVerificationStatus;
     }
 
-    public List<AddressEntity> getAddresses() {
-        return addresses;
-    }
-
-    public void setAddresses(List<AddressEntity> addresses) {
-        this.addresses = addresses;
-    }
 
 
 
