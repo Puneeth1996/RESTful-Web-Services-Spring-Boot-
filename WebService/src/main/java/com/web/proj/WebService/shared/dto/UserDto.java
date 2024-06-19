@@ -1,4 +1,4 @@
-package com.web.proj.WebService.ui.shared.dto;
+package com.web.proj.WebService.shared.dto;
 import java.io.Serializable;
 
 
