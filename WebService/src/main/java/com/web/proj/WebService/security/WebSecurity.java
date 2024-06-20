@@ -53,8 +53,10 @@ public class WebSecurity {
                 .authorizeHttpRequests().requestMatchers(HttpMethod.POST, SecurityConstants.SIGN_UP_URL+ "/login").permitAll().and()
                 .authorizeHttpRequests().requestMatchers(HttpMethod.POST, SecurityConstants.SIGN_UP_URL).permitAll().and()
                 .authorizeHttpRequests().requestMatchers("/**").authenticated().and()
-                .formLogin()
-                .and().build();
+                .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authenticationProvider(authenticationProvider())
+                .addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .build();
     }
 
 

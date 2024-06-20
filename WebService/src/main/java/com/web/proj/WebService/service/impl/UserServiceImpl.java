@@ -89,23 +89,23 @@ public class UserServiceImpl implements UserService {
         return new User(userEntity.getEmail(), userEntity.getEncryptedPassword(), new ArrayList<>());
     }
 
-    // User Creation
-    @Bean
-    public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
-
-        // InMemoryUserDetailsManager
-        UserDetails admin = User.withUsername("Amiya")
-                .password(passwordEncoder.encode("123"))
-                .roles("ADMIN", "USER")
-                .build();
-
-        UserDetails user = User.withUsername("Ejaz")
-                .password(passwordEncoder.encode("123"))
-                .roles("USER")
-                .build();
-
-        return new InMemoryUserDetailsManager(admin, user);
-    }
+//    // User Creation
+//    @Bean
+//    public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
+//
+//        // InMemoryUserDetailsManager
+//        UserDetails admin = User.withUsername("Amiya")
+//                .password(passwordEncoder.encode("123"))
+//                .roles("ADMIN", "USER")
+//                .build();
+//
+//        UserDetails user = User.withUsername("Ejaz")
+//                .password(passwordEncoder.encode("123"))
+//                .roles("USER")
+//                .build();
+//
+//        return new InMemoryUserDetailsManager(admin, user);
+//    }
 
 
 }
