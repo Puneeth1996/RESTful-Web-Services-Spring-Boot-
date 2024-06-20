@@ -1,6 +1,7 @@
 package com.web.proj.WebService.security;
 
 import com.web.proj.WebService.service.impl.UserServiceImpl;
+import com.web.proj.WebService.shared.dto.UserDto;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -33,18 +34,21 @@ public class AuthenticationFilter extends OncePerRequestFilter {
 
         String authHeader = request.getHeader(SecurityConstants.HEADER_STRING);
         String token = null;
-        String username = null;
+        String userEmail = null;
         if (authHeader != null && authHeader.startsWith(SecurityConstants.TOKEN_PREFIX)) {
             token = authHeader.substring(7);
-            username = jwtService.extractUsername(token);
+            userEmail = jwtService.extractUsername(token);
         }
 
-        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = userService.loadUserByUsername(username);
+        if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+            UserDetails userDetails = userService.loadUserByUsername(userEmail);
+            UserDto userDetailsForLoggedInUser = userService.getUser(userEmail);
             if (jwtService.validateToken(token, userDetails)) {
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authToken);
+                response.setHeader(SecurityConstants.HEADER_STRING, authHeader);
+                response.setHeader("User-Id", userService.getUser(userEmail).getUserId());
             }
         }
         filterChain.doFilter(request, response);

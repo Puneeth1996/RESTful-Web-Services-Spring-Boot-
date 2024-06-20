@@ -49,8 +49,9 @@ public class UserServiceImpl implements UserService {
 
         Authentication authentication = authenticationManager.
                 authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
+        String userId = "New user id";
         if(authentication.isAuthenticated()) {
-            return "Auth token: " + jwtService.generateToken(user.getEmail());
+            return "Auth token: " + jwtService.generateToken(user.getEmail()) + "\n\n" + "UserId: " + this.getUser(user.getEmail()).getUserId();
         }else {
             throw new RuntimeException("User Provided Email or Password could not be Authenticated.");
         }
@@ -75,6 +76,20 @@ public class UserServiceImpl implements UserService {
         UserDto returnValue = new UserDto();
         BeanUtils.copyProperties(storedUserDetails, returnValue);
 
+
+        return returnValue;
+    }
+
+
+    @Override
+    public UserDto getUser(String email) {
+        UserEntity userEntity = userRepository.findByEmail(email);
+
+        if (userEntity == null)
+            throw new UsernameNotFoundException(email);
+
+        UserDto returnValue = new UserDto();
+        BeanUtils.copyProperties(userEntity, returnValue);
 
         return returnValue;
     }
