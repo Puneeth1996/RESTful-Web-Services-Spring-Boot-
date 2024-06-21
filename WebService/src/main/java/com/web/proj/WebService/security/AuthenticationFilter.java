@@ -48,7 +48,7 @@ public class AuthenticationFilter extends OncePerRequestFilter {
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authToken);
                 response.setHeader(SecurityConstants.HEADER_STRING, authHeader);
-                response.setHeader("User-Id", userService.getUser(userEmail).getUserId());
+                response.setHeader("User-Id", request.getHeader("User-Id"));
             }
         }
         filterChain.doFilter(request, response);
