@@ -5,6 +5,7 @@ import com.web.proj.WebService.security.JwtService;
 import com.web.proj.WebService.service.impl.UserServiceImpl;
 import com.web.proj.WebService.ui.modal.request.UserDetailsRequestModel;
 import com.web.proj.WebService.ui.modal.request.UserLoginRequestModel;
+import com.web.proj.WebService.ui.modal.response.ErrorMessages;
 import com.web.proj.WebService.ui.modal.response.UserRest;
 import com.web.proj.WebService.shared.dto.UserDto;
 import org.springframework.beans.BeanUtils;
@@ -34,8 +35,10 @@ public class UserController {
 
     @PostMapping(consumes = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE }, produces = {
             MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE })
-    public UserRest createUser(@RequestBody UserDetailsRequestModel userDetails) {
+    public UserRest createUser(@RequestBody UserDetailsRequestModel userDetails) throws Exception {
         UserRest returnValue = new UserRest();
+
+        if(userDetails.getFirstName().isEmpty()) throw new Exception(ErrorMessages.MISSING_REQUIRED_FIELD.getErrorMessage());
 
         UserDto userDto = new UserDto();
         BeanUtils.copyProperties(userDetails, userDto);

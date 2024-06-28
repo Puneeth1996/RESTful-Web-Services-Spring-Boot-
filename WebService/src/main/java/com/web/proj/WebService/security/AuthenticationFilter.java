@@ -2,6 +2,7 @@ package com.web.proj.WebService.security;
 
 import com.web.proj.WebService.service.impl.UserServiceImpl;
 import com.web.proj.WebService.shared.dto.UserDto;
+import com.web.proj.WebService.ui.modal.response.ErrorMessages;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,7 +21,7 @@ import java.io.IOException;
 
 
 @Component
-public class AuthenticationFilter extends OncePerRequestFilter {
+public class AuthenticationFilter extends OncePerRequestFilter throws Exception{
 
     @Autowired
     private JwtService jwtService;
@@ -31,7 +32,8 @@ public class AuthenticationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-
+    try
+    {
         String authHeader = request.getHeader(SecurityConstants.HEADER_STRING);
         String token = null;
         String userEmail = null;
@@ -52,6 +54,11 @@ public class AuthenticationFilter extends OncePerRequestFilter {
             }
         }
         filterChain.doFilter(request, response);
+    }
+    catch (ex) {
+        throw new Exception(ex);
+    }
+
     }
 }
 
