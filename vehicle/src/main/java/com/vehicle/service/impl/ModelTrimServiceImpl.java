@@ -84,7 +84,27 @@ public class ModelTrimServiceImpl implements ModelTrimService {
         return trimTypeOptional.get();
     }
 
+    @Override
+    public void deleteModelById(int id) throws ModelNotFoundException {
+        Model dbModel = getModelById(id);
+        try {
+            modelRepository.deleteById(id);
+        } catch (Exception e){
+            System.out.println("******Unable to delete model. Check DB Connection********"+e.getMessage());
+            e.printStackTrace();
+        }
+    }
 
+    @Override
+    public void deleteTrimType(int id) throws TrimTypeNotFoundException {
+        TrimType dbTrim = getTrimTypeById(id);
+        try {
+            modelRepository.deleteById(id);
+        } catch(Exception e){
+            System.out.println("******Unable to delete trim type. Check DB Connection********"+e.getMessage());
+            e.printStackTrace();
+        }
+    }
 
 
 }
