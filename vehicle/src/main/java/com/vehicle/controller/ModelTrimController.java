@@ -68,4 +68,24 @@ public class ModelTrimController {
     }*/
 
 
+    @GetMapping("/manufacturer/{manufacturerId}")
+    public ResponseEntity<List<Model>> findAllModelsForManufacturer(@PathVariable int manufacturerId) throws Exception {
+        List<Model> allModels = modelTrimService.getModelsByManufacturerId(manufacturerId);
+        if(allModels.size()>0){
+            return new ResponseEntity<>(allModels,HttpStatus.OK);
+        } else {
+            throw new ModelNotFoundException("NO models found in DB for manufacturer with ID-"+manufacturerId);
+        }
+    }
+
+    @GetMapping("/manufacturer/name/{manufacturerName}")
+    public ResponseEntity<List<Model>> findAllModelsForManufacturer(@PathVariable String manufacturerName) throws Exception {
+        List<Model> dbModelList = modelTrimService.getModelsByManufacturerName(manufacturerName);
+        if(dbModelList.size()>0){
+            return new ResponseEntity<>(dbModelList,HttpStatus.OK);
+        } else {
+            throw new ModelNotFoundException("NO models found in DB for manufacturer with name-"+manufacturerName);
+        }
+    }
+
 }

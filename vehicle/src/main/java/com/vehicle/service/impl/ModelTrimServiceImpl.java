@@ -1,9 +1,12 @@
 package com.vehicle.service.impl;
 
+import com.vehicle.entity.Manufacturer;
 import com.vehicle.entity.Model;
 import com.vehicle.entity.TrimType;
+import com.vehicle.exception.ManufacturerNotFoundException;
 import com.vehicle.exception.ModelNotFoundException;
 import com.vehicle.exception.TrimTypeNotFoundException;
+import com.vehicle.repository.ManufacturerRepository;
 import com.vehicle.repository.ModelRepository;
 import com.vehicle.repository.TrimTypeRepository;
 import com.vehicle.service.ModelTrimService;
@@ -22,6 +25,9 @@ public class ModelTrimServiceImpl implements ModelTrimService {
 
     @Autowired
     TrimTypeRepository trimTypeRepository;
+
+    @Autowired
+    ManufacturerRepository manufacturerRepository;
 
     @Override
     public Model saveModel(Model model) {
@@ -104,6 +110,29 @@ public class ModelTrimServiceImpl implements ModelTrimService {
             System.out.println("******Unable to delete trim type. Check DB Connection********"+e.getMessage());
             e.printStackTrace();
         }
+    }
+
+
+
+    @Override
+    public List<Model> getModelsByManufacturerId(int manufacturerId) throws ManufacturerNotFoundException {
+        Optional<Manufacturer> dbManufacturer = manufacturerRepository.findById(manufacturerId);
+        if(!dbManufacturer.isPresent()){
+            throw new ManufacturerNotFoundException("No manufacturer found for ID-"+manufacturerId);
+        }
+        List<Model> dbModels = modelRepository.findByManufacturer(dbManufacturer.get());
+        return dbModels;
+    }
+
+    @Override
+    public List<Model> getModelsByManufacturerName(String name) throws ManufacturerNotFoundException {
+        Manufacturer dbManufacturer = manufacturerRepository.findByManufacturerName(name);
+        if(dbManufacturer == null){
+            throw new ManufacturerNotFoundException("No manufacturer found in DB for name-"+name);
+        }
+        int manufacturerId = dbManufacturer.getId();
+        List<Model> dbModels = modelRepository.fetchModelsBasedManufacturerId(manufacturerId);
+        return dbModels;
     }
 
 
