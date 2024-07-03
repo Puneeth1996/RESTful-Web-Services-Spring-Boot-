@@ -2,7 +2,7 @@ package com.vehicle.details.service;
 
 
 
-import com.vehicle.details.entity.User;
+import com.vehicle.details.entity.UserDetail;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 
@@ -11,6 +11,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 public interface UserService extends UserDetailsService {
 
 
-    User saveUser(User user);
-    String getAuthToken(User user);
+    UserDetail saveUser(UserDetail userDetail);
+    String getAuthToken(UserDetail userDetail);
 }

@@ -1,9 +1,7 @@
 package com.vehicle.details.controller;
 
 
-import com.vehicle.details.entity.User;
 import com.vehicle.details.entity.VehicleDetail;
-import com.vehicle.details.service.UserService;
 import com.vehicle.details.service.VehicleDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

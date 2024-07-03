@@ -1,6 +1,6 @@
 package com.vehicle.details.controller;
 
-import com.vehicle.details.entity.User;
+import com.vehicle.details.entity.UserDetail;
 import com.vehicle.details.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,8 +22,8 @@ public class HomeController {
 
 
     @PostMapping
-    public ResponseEntity<String> userRegister(@RequestBody User user) {
-        if (userService.saveUser(user) != null) {
+    public ResponseEntity<String> userRegister(@RequestBody UserDetail userDetail) {
+        if (userService.saveUser(userDetail) != null) {
             return new ResponseEntity<>("User Registered Successfully", HttpStatus.OK);
         } else {
             return new ResponseEntity<>("Oops! User not registered", HttpStatus.OK);
@@ -32,8 +32,8 @@ public class HomeController {
 
 
     @PostMapping("/login")
-    public String loginUser(@RequestBody User User) {
-        return userService.getAuthToken(User);
+    public String loginUser(@RequestBody UserDetail UserDetail) {
+        return userService.getAuthToken(UserDetail);
     }
 
 }
