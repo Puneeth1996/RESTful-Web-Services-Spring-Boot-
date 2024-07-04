@@ -16,4 +16,5 @@ public class UserDetail {
     private int id;
     private String username;
     private String password;
+    private String access_type;
 }

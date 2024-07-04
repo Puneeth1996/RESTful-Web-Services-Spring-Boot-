@@ -11,7 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -26,7 +26,8 @@ public class UserServiceImpl implements UserService {
 
 
 
-    private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     @Autowired
     AuthenticationManager authenticationManager;
@@ -51,7 +52,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDetail saveUser(UserDetail userDetail) {
-        userDetail.setPassword(encoder.encode(userDetail.getPassword()));
+        userDetail.setPassword(passwordEncoder.encode(userDetail.getPassword()));
         return userRepo.save(userDetail);
     }
 
