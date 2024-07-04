@@ -2,6 +2,7 @@ package com.vehicle.details.controller;
 
 
 import com.vehicle.details.entity.VehicleDetail;
+import com.vehicle.details.entity.VehicleDetailsDTO;
 import com.vehicle.details.errors.MandatoryFieldsMissingException;
 import com.vehicle.details.errors.VehicleDetailsNotFound;
 import com.vehicle.details.service.VehicleDetailService;
@@ -39,7 +40,8 @@ public class VehicleDetailController {
     }
 
     @GetMapping
-    public List<VehicleDetail> getAllVehicleDetails() throws VehicleDetailsNotFound {
-        return vehicleDetailService.fetchAllVehicleDetails();
+    public VehicleDetailsDTO getAllVehicleDetails() throws VehicleDetailsNotFound {
+        List<VehicleDetail> savedVehicles = vehicleDetailService.fetchAllVehicleDetails();
+        return new VehicleDetailsDTO(savedVehicles);
     }
 }
