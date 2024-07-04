@@ -3,6 +3,7 @@ package com.vehicle.details.controller;
 
 import com.vehicle.details.entity.VehicleDetail;
 import com.vehicle.details.errors.MandatoryFieldsMissingException;
+import com.vehicle.details.errors.VehicleDetailsNotFound;
 import com.vehicle.details.service.VehicleDetailService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,5 +36,10 @@ public class VehicleDetailController {
         }
         VehicleDetail dbVehicle = vehicleDetailService.saveVehicleDetails(vehicleDetail);
         return new ResponseEntity<>(dbVehicle, HttpStatus.CREATED);
+    }
+
+    @GetMapping
+    public List<VehicleDetail> getAllVehicleDetails() throws VehicleDetailsNotFound {
+        return vehicleDetailService.fetchAllVehicleDetails();
     }
 }
