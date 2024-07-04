@@ -1,6 +1,7 @@
 package com.vehicle.details.service.impl;
 
 import com.vehicle.details.entity.VehicleDetail;
+import com.vehicle.details.errors.VehicleNotSaved;
 import com.vehicle.details.repository.VehicleDetailsRepository;
 import com.vehicle.details.service.VehicleDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,13 @@ public class VehicleDetailServiceImpl implements VehicleDetailService {
 
 
     @Override
-    public VehicleDetail saveVehicleDetails(VehicleDetail vehicleDetail) {
-        return vehicleDetailsRepository.save(vehicleDetail);
+    public VehicleDetail saveVehicleDetails(VehicleDetail vehicleDetail) throws VehicleNotSaved {
+        VehicleDetail dbVehicle = null;
+        try {
+            dbVehicle = vehicleDetailsRepository.save(vehicleDetail);
+        } catch (Exception e){
+            throw new VehicleNotSaved("Unable to save vehicle in DB. Got error:- "+e.getMessage());
+        }
+        return dbVehicle;
     }
 }

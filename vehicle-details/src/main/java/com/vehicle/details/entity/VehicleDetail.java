@@ -2,6 +2,8 @@ package com.vehicle.details.entity;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 @Getter
@@ -15,11 +17,17 @@ public class VehicleDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     @Column(name="model_year")
     private String modelYear;
 
+    @NotBlank(message = "* Manufacturer name is required")
     private String brandName;
+
+    @NotBlank(message = "* Model name is required")
+    @Size(min = 3,max = 15, message = "* Model name should be between 3-15 characters")
     private String modelName;
+
     private String trimType;
     private String bodyType;
     private double price;
