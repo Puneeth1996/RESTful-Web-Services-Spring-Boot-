@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -39,6 +40,19 @@ public class VehicleDetailServiceImpl implements VehicleDetailService {
         }
         return dbVehicles;
     }
+
+
+    @Override
+    public VehicleDetail getVehicleById(int vehicleId) throws VehicleDetailsNotFound {
+        Optional<VehicleDetail> optionalVehicleDetail = vehicleDetailsRepository.findById(vehicleId);
+        if(!optionalVehicleDetail.isPresent()){
+            throw new VehicleDetailsNotFound("No vehicle details found in database for vehicle ID-"+vehicleId);
+        }
+        return optionalVehicleDetail.get();
+    }
+
+
+
 
 
 }

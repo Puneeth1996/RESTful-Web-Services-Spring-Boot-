@@ -44,4 +44,10 @@ public class VehicleDetailController {
         List<VehicleDetail> savedVehicles = vehicleDetailService.fetchAllVehicleDetails();
         return new VehicleDetailsDTO(savedVehicles);
     }
+
+
+    @GetMapping("/{vehicleId}")
+    public VehicleDetail getVehicleDetailById(@PathVariable int vehicleId) throws VehicleDetailsNotFound {
+        return vehicleDetailService.getVehicleById(vehicleId);
+    }
 }
