@@ -4,6 +4,7 @@ import com.vehicle.dto.ClientVehicleDetail;
 import com.vehicle.entity.VehicleDetail;
 import com.vehicle.entity.VehicleDetailsDTO;
 import com.vehicle.entity.VehicleMarketPrice;
+import com.vehicle.exception.VehicleDetailsNotFound;
 import com.vehicle.service.VehicleDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +36,19 @@ public class VehicleDetailServiceImpl implements VehicleDetailService {
                 .map(vehicle -> mapClientVehicleDetailFromVehicleDetail(vehicle)).collect(Collectors.toList());
         return clientVehicleDetailsList;
     }
+
+    @Override
+    public VehicleDetail getVehicleById(int vehicleId) throws VehicleDetailsNotFound {
+        VehicleDetail dbVehicle = null;
+        try{
+            dbVehicle = restTemplate.getForObject("http://localhost:9194/api/v1/vehicle-details/"+vehicleId,VehicleDetail.class);
+        } catch(Exception e){
+            throw new VehicleDetailsNotFound("No vehicle details found in DB for ID-"+vehicleId);
+        }
+        return dbVehicle;
+    }
+
+
 
     private ClientVehicleDetail mapClientVehicleDetailFromVehicleDetail(VehicleDetail vehicleDetail){
         ClientVehicleDetail clientVehicleDetail = new ClientVehicleDetail();
