@@ -1,0 +1,14 @@
+Query params for search api 
+
+modelYear:2018
+brandName:Mercedex
+modelName:AFG
+trimType:TX
+bodyType:Compact body build
+price:3500.5
+miles:1000
+interestRate:5.67
+location:Irving NY
+description:Very Nice car for on roading and off roading
+seller:DUYCK
+sellerPhone:908-885-1245
