@@ -1,0 +1,432 @@
+{
+	"info": {
+		"_postman_id": "0fc67379-660f-47cb-8f8e-145f92ed8674",
+		"name": "Vehicle Search",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5628545",
+		"_collection_link": "https://dark-shuttle-97946.postman.co/workspace/Spring-boot-learning~e55d4208-de17-4437-9897-a4da383dafad/collection/5628545-0fc67379-660f-47cb-8f8e-145f92ed8674?action=share&source=collection_link&creator=5628545"
+	},
+	"item": [
+		{
+			"name": "ManufacturerController",
+			"item": [
+				{
+					"name": "createManufacturerInDB",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"manufacturerName\": \"Audi\",\r\n    \"countryOfOrigin\": \"Germany\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/manufacturers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"manufacturers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllManufacturers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/manufacturers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"manufacturers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getManufacturerBasedOnId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/manufacturers/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"manufacturers",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateManufacture",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"manufacturerName\": \"Tesla\",\r\n    \"countryOfOrigin\": \"America\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/manufacturers/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"manufacturers",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteManufacturerById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/manufacturers/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"manufacturers",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ModelTrimController",
+			"item": [
+				{
+					"name": "createModelTrim",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"modelName\": \"Lemansd\",\r\n    \"trimTypeList\": [\r\n        {\r\n            \"id\": 3,\r\n            \"trimType\": \"T\"\r\n        },\r\n        {\r\n            \"id\": 4,\r\n            \"trimType\": \"Y\"\r\n            \r\n        }\r\n    ],\r\n    \"manufacturer\": {\r\n        \"id\": 3,\r\n        \"manufacturerName\": \"Ferrai\",\r\n        \"countryOfOrigin\": \"Italy\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/model-trim",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"model-trim"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createTrimType",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"trimType\": \"Platinum\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/model-trim/trim-type",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"model-trim",
+								"trim-type"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "fetchAllModels",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/model-trim",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"model-trim"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateModel",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": 4,\r\n        \"modelName\": \"Jeep-chreokie\",\r\n        \"trimTypeList\": [\r\n            {\r\n                \"id\": 3,\r\n                \"trimType\": \"Gold-X\"\r\n            },\r\n            {\r\n                \"id\": 4,\r\n                \"trimType\": \"Platinum\"\r\n            }\r\n        ],\r\n        \"manufacturer\": null\r\n    },",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/model-trim/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"model-trim",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateTrimType",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"trimType\": \"CG-Lmtd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/model-trim/trim-type/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"model-trim",
+								"trim-type",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteModel",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/model-trim/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"model-trim",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllModelsForManufacturer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/model-trim/manufacturer/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"model-trim",
+								"manufacturer",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllModelsForManufacturer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/model-trim/manufacturer/name/Tesla",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"model-trim",
+								"manufacturer",
+								"name",
+								"Tesla"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "VehicleDetailsController",
+			"item": [
+				{
+					"name": "getAllVehicleDetails",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcml2ZSIsImlhdCI6MTcyMDQ0MjgzOCwiZXhwIjoxNzIwNDQ0NjM4fQ.t0gUHZeUXT2Zc5A_pYbSNdC5LV-IJSAoDat3bejbI8Y",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/vehicle-details",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"vehicle-details"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "VehicleMarketPriceController",
+			"item": [
+				{
+					"name": "saveVehicleMarketPrice",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"modelYear\": \"2024\",\r\n    \"brandName\": \"NIDAN\",\r\n    \"modelName\": \"GTRRR\",\r\n    \"price\": 2504.34\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/vechicle-market-price",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"vechicle-market-price"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

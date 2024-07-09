@@ -1,0 +1,302 @@
+{
+	"info": {
+		"_postman_id": "bd32c853-7664-48cd-af1c-7513617aacb4",
+		"name": "Vehicle Details",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5628545",
+		"_collection_link": "https://dark-shuttle-97946.postman.co/workspace/Spring-boot-learning~e55d4208-de17-4437-9897-a4da383dafad/collection/5628545-bd32c853-7664-48cd-af1c-7513617aacb4?action=share&source=collection_link&creator=5628545"
+	},
+	"item": [
+		{
+			"name": "saveVehicleDetails",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcml2ZSIsImlhdCI6MTcyMDQ0MjUyNSwiZXhwIjoxNzIwNDQ0MzI1fQ.fkm06FqCrG6lAV3E8jyPfYVXho_32XFi7oPxMK_5xGE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"modelYear\": 2024,\r\n    \"brandName\": \"NIDAN\",\r\n    \"modelName\": \"GTRRR\",\r\n    \"trimType\": \"XS\",\r\n    \"bodyType\": \"Open Roof\",\r\n    \"price\": 2504.34,\r\n    \"miles\": 2000,\r\n    \"interestRate\": 7.45,\r\n    \"location\": \"Bronx, NY\",\r\n    \"description\": \"Very Nice car for on roading and off roading\",\r\n    \"seller\": \"DUYCK\",\r\n    \"sellerPhone\": \"908-885-1245\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9192/api/v1/vehicle-details",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9192",
+					"path": [
+						"api",
+						"v1",
+						"vehicle-details"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"prive\",\r\n    \"password\": \"prive\",\r\n    \"access_type\": \"USER\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9192/api/v1/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9192",
+					"path": [
+						"api",
+						"v1",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"prive\",\r\n    \"password\": \"prive\",\r\n    \"access_type\": \"USER\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9192/api/v1/register/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9192",
+					"path": [
+						"api",
+						"v1",
+						"register",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllVehicleDetails",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcml2ZSIsImlhdCI6MTcyMDUwNzQ0MiwiZXhwIjoxNzIwNTA5MjQyfQ._5Eo9Fwie-kAFxdxT1j2iasABOj8ZbXSpNHsaW9ht6k",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9192/api/v1/vehicle-details",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9192",
+					"path": [
+						"api",
+						"v1",
+						"vehicle-details"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getVehicleDetailById",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcml2ZSIsImlhdCI6MTcyMDQ0NzUzNywiZXhwIjoxNzIwNDQ5MzM3fQ.kPTBEp3CfwCeOxxGgX2UQWpQcUYbts4xio_MAeccfSU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9192/api/v1/vehicle-details/9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9192",
+					"path": [
+						"api",
+						"v1",
+						"vehicle-details",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteVehicleDetailsById",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcml2ZSIsImlhdCI6MTcyMDUwNzQ0MiwiZXhwIjoxNzIwNTA5MjQyfQ._5Eo9Fwie-kAFxdxT1j2iasABOj8ZbXSpNHsaW9ht6k",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9192/api/v1/vehicle-details/7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9192",
+					"path": [
+						"api",
+						"v1",
+						"vehicle-details",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateVehicleBYiD",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcml2ZSIsImlhdCI6MTcyMDQ0NzUzNywiZXhwIjoxNzIwNDQ5MzM3fQ.kPTBEp3CfwCeOxxGgX2UQWpQcUYbts4xio_MAeccfSU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n            \"id\": 2,\r\n            \"modelYear\": \"2018\",\r\n            \"brandName\": \"Mercedex\",\r\n            \"modelName\": \"AFG\",\r\n            \"trimType\": \"TX\",\r\n            \"bodyType\": \"Compact body build\",\r\n            \"price\":3500.50,\r\n            \"miles\": 1000,\r\n            \"interestRate\": 5.67,\r\n            \"location\": \"Irving, NY\",\r\n            \"description\": \"Very Nice car for on roading and off roading\",\r\n            \"seller\": \"DUYCK\",\r\n            \"sellerPhone\": \"908-885-1245\"\r\n        }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9192/api/v1/vehicle-details/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9192",
+					"path": [
+						"api",
+						"v1",
+						"vehicle-details",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getVehiclesByCrietaria",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcml2ZSIsImlhdCI6MTcyMDUwNzQ0MiwiZXhwIjoxNzIwNTA5MjQyfQ._5Eo9Fwie-kAFxdxT1j2iasABOj8ZbXSpNHsaW9ht6k",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9192/api/v1/vehicle-details/search?modelYear=2018&brand=Mercedex&model=&trim=&price=",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9192",
+					"path": [
+						"api",
+						"v1",
+						"vehicle-details",
+						"search"
+					],
+					"query": [
+						{
+							"key": "modelYear",
+							"value": "2018"
+						},
+						{
+							"key": "brand",
+							"value": "Mercedex"
+						},
+						{
+							"key": "model",
+							"value": ""
+						},
+						{
+							"key": "trim",
+							"value": ""
+						},
+						{
+							"key": "price",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
