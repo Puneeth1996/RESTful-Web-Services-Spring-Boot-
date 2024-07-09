@@ -105,5 +105,39 @@ public class VehicleDetailServiceImpl implements VehicleDetailService {
 
 
 
+    @Override
+    public List<VehicleDetail> fetchFilteredVehiclesDetails(String modelYear, String brand, String model, String trim, double price) throws VehicleDetailsNotFound {
+        List<VehicleDetail> vehicleDetailList = null;
+        if(modelYear!="" && brand!="" && model!="" && trim!="" && price>0.0){
+            vehicleDetailList = vehicleDetailsRepository.filterVehicleBasedOnCriteria(modelYear,brand,model,trim,price);
+        } else if(modelYear!="" && brand!="" && model!="" && trim!=""){
+            vehicleDetailList = vehicleDetailsRepository.filterVehicleBasedOnCriteria5(modelYear,brand,model,trim);
+        } else if(modelYear!="" && brand!="" && model!="" && price>0.0) {
+            vehicleDetailList = vehicleDetailsRepository.filterVehicleBasedOnCriteria6(modelYear,brand,model,price);
+        } else if(modelYear!="" && brand!="" && price>0.0) {
+            vehicleDetailList = vehicleDetailsRepository.filterVehicleBasedOnCriteria6(modelYear,brand,price);
+        } else if(brand!="" && model!="" && trim!="" && price>0.0){
+            vehicleDetailList = vehicleDetailsRepository.filterVehicleBasedOnCriteria(brand,model,trim,price);
+        } else if(brand!="" && model!="" && trim!=""){
+            vehicleDetailList = vehicleDetailsRepository.filterVehicleBasedOnCriteria1(brand,model,trim);
+        } else if(brand!="" && model!="" && price>0.0){
+            vehicleDetailList = vehicleDetailsRepository.filterVehicleBasedOnCriteria2(brand,model,price);
+        } else if(modelYear!="" && price>0.0){
+            vehicleDetailList = vehicleDetailsRepository.filterVehicleBasedOnCriteria7(modelYear,price);
+        } else if(brand!="" && price>0.0){
+            vehicleDetailList = vehicleDetailsRepository.filterVehicleBasedOnCriteria2(brand,price);
+        } else if(brand!=""){
+            vehicleDetailList = vehicleDetailsRepository.filterVehicleBasedOnCriteria3(brand);
+        } else if(price>0.0){
+            vehicleDetailList = vehicleDetailsRepository.filterVehicleBasedOnCriteria4(price);
+        } else if(modelYear!=""){
+            vehicleDetailList = vehicleDetailsRepository.filterVehicleBasedOnCriteria8(modelYear);
+        } else {
+            vehicleDetailList = fetchAllVehicleDetails();
+        }
+        return vehicleDetailList;
+    }
+
+
 
 }
