@@ -29,3 +29,7 @@ Learning Restfull web service with spring boot from Sergey Kargopolov
 ### Useful commands
 
 chrome.exe --user-data-dir="C:/Chrome dev session" --disable-web-securtiy
+
+# ZeroToHere SpringBoot & JPA Mastery
+
+Check the folder property-management-maste for all the revision on Spring boot learnings done 2024 Oct 10th
